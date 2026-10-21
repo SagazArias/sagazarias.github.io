@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taller Cadencia</title>
+<meta name="description" content="Taller de bicicletas de ruta y gravel en Chapinero, Bogotá. Mantenimiento, ajuste fino y bike fit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700..900&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: hoja técnica de taller — columnas asimétricas, datos en monoespaciada, un solo momento interactivo (la calculadora de piñones) */
+:root {
+  --paper: #ECEEF1;
+  --surface: #FFFFFF;
+  --ink: #151922;
+  --muted: #586071;
+  --line: #CBD0D8;
+  --cobalt: #2238C9;
+  --on-cobalt: #FFFFFF;
+  --signal: #E2A80F;
+  --danger: #B42318;
+  --on-signal: #151922;
+  --focus: #2238C9;
+  --line-strong: #7C8496;
+  --sheet: #FFFFFF;
+  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --step-dense: 0.75rem;
+  --step--1: 0.8125rem;
+  --step-small: 0.9rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 4vw, 2.75rem);
+  --step-4: clamp(2.6rem, 6vw, 4.5rem);
+  --max: 72rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1117; --surface: #161A22; --ink: #E7EAF0; --muted: #9AA3B3;
+    --line: #2A303C; --cobalt: #7086FF; --on-cobalt: #0E1117; --signal: #F2C230; --danger: #FF7A66; --focus: #F2C230; --line-strong: #5E687C; --sheet: #1D222C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1117; --surface: #161A22; --ink: #E7EAF0; --muted: #9AA3B3;
+  --line: #2A303C; --cobalt: #7086FF; --on-cobalt: #0E1117; --signal: #F2C230; --danger: #FF7A66; --focus: #F2C230; --line-strong: #5E687C; --sheet: #1D222C;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 var(--step-0)/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.02; margin: 0; text-wrap: balance; }
+h2 { font-size: var(--step-3); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 700; font-stretch: 100%; }
+p { margin: 0; max-width: 62ch; text-wrap: pretty; }
+::selection { background: var(--cobalt); color: var(--on-cobalt); }
+a { color: inherit; }
+.skip { position: absolute; left: 1rem; top: -4rem; z-index: 20; background: var(--surface); color: var(--ink); padding: 0.6rem 1rem; border-radius: 8px; }
+.skip:focus { top: calc(0.75rem + env(safe-area-inset-top, 0px)); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.label {
+  font: 600 var(--step--1)/1 var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+}
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+section { padding-block: clamp(4rem, 9vw, 7rem); border-top: 1px solid var(--line); }
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.9rem; }
+.brand { font: 900 1.15rem/1 var(--font-display); font-stretch: 125%; text-decoration: none; letter-spacing: -0.01em; }
+.brand span { color: var(--cobalt); }
+.nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+.nav ul a { text-decoration: none; color: var(--muted); font-weight: 500; transition: color 150ms ease; }
+.nav ul a:hover { color: var(--ink); }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.3rem; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--cobalt); color: var(--on-cobalt);
+  font: 600 var(--step-0)/1 var(--font-body); text-decoration: none;
+  transition: transform 160ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); }
+.btn.ghost { justify-self: start; background: transparent; color: var(--cobalt); box-shadow: inset 0 0 0 1.5px var(--cobalt); padding: 0.6rem 1.1rem; font-size: var(--step-small); white-space: nowrap; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); }
+  .btn:hover:active { transform: translateY(-2px) scale(0.97); }
+}
+.nav .btn { padding: 0.6rem 1.05rem; font-size: var(--step-small); gap: 0.3em; }
+@media (max-width: 760px) { .nav ul { display: none; } }
+/* En teléfonos muy angostos el mismo botón está en el hero */
+@media (max-width: 400px) {
+  .brand { font-size: var(--step-small); font-stretch: 100%; }
+  .nav .btn { padding-inline: 0.85rem; }
+  .nav .btn .long { display: none; }
+}
+
+/* Hero */
+.hero { border-top: 0; padding-block: clamp(2rem, 5vw, 4rem) clamp(3.5rem, 7vw, 6rem); }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+/* el texto arranca a la altura del título de la calculadora */
+.hero-copy { padding-top: clamp(0rem, 4vw, 3rem); }
+.hero-copy { display: grid; gap: 1.5rem; min-width: 0; }
+.hero h1 {
+  font-size: var(--step-4); font-weight: 900; font-stretch: 125%;
+  letter-spacing: -0.025em; text-transform: uppercase; line-height: 0.92;
+}
+.hero h1 em { font-style: normal; color: var(--cobalt); display: block; }
+/* "al diente" va junto donde cabe; en teléfonos angostos se deja partir */
+@media (min-width: 480px) { .hero h1 .keep { white-space: nowrap; } }
+.hero-copy > p { font-size: var(--step-1); color: var(--muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.link { font-weight: 600; text-underline-offset: 4px; }
+.hero-copy > .hero-note { font: 400 var(--step--1)/1.5 var(--font-mono); color: var(--muted); }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+
+/* Calculadora */
+.calc {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: clamp(1.25rem, 3vw, 1.75rem); display: grid; gap: 1.25rem; min-width: 0;
+}
+.calc-title { font-size: var(--step-1); font-weight: 700; font-stretch: 100%; letter-spacing: 0; }
+.calc-head { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 1rem; align-items: center; }
+.calc-head .label { grid-row: 2; }
+.calc-head .toggle { grid-row: 1 / 3; grid-column: 2; }
+.drivetrain { width: 100%; height: auto; display: block; }
+.drivetrain .ring { fill: var(--ink); }
+.drivetrain .cog { fill: var(--cobalt); }
+.drivetrain .hole { fill: var(--surface); }
+.drivetrain .arm { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+.drivetrain .chain { fill: none; stroke: var(--muted); stroke-width: 3; stroke-dasharray: 4 4; }
+/* La rotación la maneja WAAPI en el script para cambiar de velocidad sin saltos */
+.spin { transform-box: fill-box; transform-origin: center; }
+.toggle { background: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.8rem; color: var(--ink); font: 600 var(--step--1)/1 var(--font-mono); cursor: pointer; }
+.toggle:hover { border-color: var(--cobalt); }
+.toggle { transition: border-color 150ms ease, background-color 150ms ease, transform 160ms var(--ease-out); }
+.toggle[aria-pressed="true"] { background: var(--cobalt); border-color: var(--cobalt); color: var(--on-cobalt); }
+.toggle:active { transform: scale(0.97); }
+@media (pointer: coarse) {
+  .btn, .toggle { min-height: 44px; }
+  .link, footer a, .info dd a { display: inline-block; padding-block: 0.65rem; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+@keyframes fade { from { opacity: 0; } }
+.hero-copy > *, .hero .calc { animation: rise 500ms var(--ease-out) both; }
+.hero-copy > :nth-child(2) { animation-delay: 60ms; }
+.hero-copy > :nth-child(3) { animation-delay: 120ms; }
+.hero-copy > :nth-child(4) { animation-delay: 180ms; }
+.hero .calc { animation-delay: 160ms; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-copy > *, .hero .calc { animation-name: fade; }
+}
+.sliders { display: grid; gap: 0.35rem; }
+.slider { display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 1rem; align-items: center; }
+.slider label { font-weight: 500; }
+.slider output { font: 600 var(--step-0)/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.slider input {
+  grid-column: 1 / -1; width: 100%; height: 44px; margin: 0; cursor: pointer;
+  -webkit-appearance: none; appearance: none; background: transparent;
+  touch-action: pan-y; /* un swipe vertical sobre el slider desplaza la página */
+}
+.slider input::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 999px;
+  background: linear-gradient(var(--cobalt), var(--cobalt)) 0 / var(--fill, 50%) 100% no-repeat, var(--line);
+}
+.slider input::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 24px; height: 24px; margin-top: -9px; border-radius: 50%;
+  background: var(--surface); border: 3px solid var(--cobalt); box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+}
+.slider input::-moz-range-track { height: 6px; border-radius: 999px; background: var(--line); }
+.slider input::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--cobalt); }
+.slider input::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--surface); border: 3px solid var(--cobalt); }
+.readout { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding-top: 1rem; gap: 0.75rem; }
+.readout div { display: grid; gap: 0.4rem; min-width: 0; }
+.readout .label { font-size: clamp(11px, 2.9vw, 0.8125rem); letter-spacing: 0; overflow-wrap: anywhere; }
+.readout strong { font: 600 clamp(1.1rem, 5vw, 1.75rem)/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.readout strong small { font-size: max(0.55em, 11px); color: var(--muted); font-weight: 400; }
+.calc-note { font-size: var(--step--1); color: var(--muted); }
+
+/* Secciones */
+.sec-head { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem 3rem; align-items: end; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.sec-head p { color: var(--muted); }
+.sec-head.solo { grid-template-columns: 1fr; }
+.sec-head.solo h2 { max-width: 18ch; }
+@media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; } }
+
+/* Servicios: tarifario de taller, como la lista de precios colgada en la pared */
+.pricing { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.pricing .sec-head { grid-template-columns: 1fr; margin: 0; position: sticky; top: calc(6rem + env(safe-area-inset-top, 0px)); }
+.tariff { border-top: 2px solid var(--ink); }
+.service { display: grid; gap: 0.7rem; padding-block: 1.6rem; border-bottom: 1px dashed var(--line-strong); min-width: 0; }
+.tariff-line { display: flex; align-items: baseline; gap: 0.75rem; }
+.tariff-line h3 { font-size: var(--step-1); }
+.leader { flex: 1 1 2rem; min-width: 2rem; border-bottom: 2px dotted var(--line-strong); }
+.service .price { font: 600 var(--step-2)/1 var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.service .price small { font-size: 0.5em; color: var(--muted); font-weight: 400; }
+.tariff-includes { color: var(--muted); }
+.tariff-meta { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) auto; align-items: center; gap: 0.5rem 1rem; }
+.tariff-when { font-size: var(--step-small); }
+.badge {
+  margin-left: 0.4rem; vertical-align: middle; display: inline-block; white-space: nowrap;
+  font: 600 0.7rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em;
+  background: var(--signal); color: var(--on-signal); padding: 0.3rem 0.5rem; border-radius: 4px;
+}
+@media (max-width: 860px) {
+  .pricing { grid-template-columns: 1fr; }
+  .pricing .sec-head { position: static; }
+}
+@media (max-width: 520px) {
+  .tariff-line { flex-wrap: wrap; row-gap: 0.4rem; }
+  .leader { display: none; }
+  .service .price { flex-basis: 100%; }
+  .tariff-meta { grid-template-columns: 1fr; }
+}
+
+/* Proceso: secuencia real, por eso va numerada */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; gap: 0.75rem; align-content: start; }
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  font: 600 var(--step--1)/1 var(--font-mono); color: var(--muted);
+  border-top: 2px solid var(--ink); padding-top: 0.8rem;
+}
+.steps p { color: var(--muted); }
+.process { display: grid; grid-template-columns: 1fr minmax(0, 30rem); gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+.process .steps { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 960px) { .process { grid-template-columns: 1fr; } }
+
+/* Orden de trabajo: la pieza que el taller promete, mostrada */
+.ticket {
+  margin: 0; background: var(--sheet); border: 1px solid var(--line); border-top: 3px dashed var(--line-strong);
+  border-radius: 4px 4px 14px 14px; padding: clamp(1.25rem, 3vw, 1.75rem); display: grid; gap: 1.1rem; min-width: 0;
+  box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.45);
+}
+.ticket-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; }
+.ticket-head h3 { font-size: var(--step-1); font-weight: 900; font-stretch: 125%; text-transform: uppercase; letter-spacing: -0.01em; }
+.ticket-head .mono { font-size: var(--step--1); color: var(--muted); }
+.ticket-bike { font-size: var(--step-small); color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+.ticket-scroll { overflow-x: auto; }
+.ticket table { width: 100%; border-collapse: collapse; font: 400 var(--step-small)/1.3 var(--font-mono); font-variant-numeric: tabular-nums; }
+.ticket th, .ticket td { text-align: left; padding: 0.55rem 0.5rem 0.55rem 0; border-bottom: 1px dashed var(--line); white-space: nowrap; }
+.ticket thead th { font-size: var(--step-dense); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+.ticket tbody th { font-family: var(--font-body); font-weight: 500; }
+.ticket td:last-child { text-align: right; padding-right: 0; color: var(--muted); }
+.ticket td.changed { color: var(--cobalt); font-weight: 600; }
+.wear { display: inline-flex; align-items: center; gap: 0.5rem; }
+.wear::before {
+  content: ""; width: 3.5rem; height: 6px; border-radius: 999px;
+  background: linear-gradient(var(--signal), var(--signal)) 0 / var(--wear) 100% no-repeat, var(--line);
+}
+.ticket-foot { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 1rem; font-size: var(--step-small); }
+.ticket-foot dt { color: var(--muted); }
+.ticket-foot dd { margin: 0; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ticket figcaption { font-size: var(--step--1); color: var(--muted); }
+@media (max-width: 480px) {
+  .process .steps { grid-template-columns: 1fr; }
+  .ticket { padding: 1rem; }
+  .ticket table { font-size: var(--step-dense); }
+  .ticket tbody th { white-space: normal; }
+  .wear::before { width: 2rem; }
+}
+.steps .time { font: 400 var(--step--1)/1 var(--font-mono); color: var(--ink); }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+/* Testimonios */
+/* Amarillo = el color de marcar y medir en el taller; aquí ocupa una franja completa */
+.voices { background: var(--signal); color: var(--on-signal); border-top: 0; }
+.voices ::selection { background: var(--on-signal); color: var(--signal); }
+.quotes { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.5rem 4rem; }
+.quotes figure { margin: 0; display: grid; gap: 1rem; align-content: start; }
+.quotes figure:not(.lead) + figure { border-top: 1px solid color-mix(in srgb, var(--on-signal) 30%, var(--signal)); padding-top: 2.5rem; }
+.quotes .lead { grid-row: span 2; }
+.quotes blockquote { margin: 0; font: 500 var(--step-1)/1.4 var(--font-body); text-wrap: pretty; }
+.quotes .lead blockquote { font: 800 var(--step-3)/1.08 var(--font-display); font-stretch: 112%; letter-spacing: -0.015em; text-wrap: balance; }
+.quotes figcaption { color: color-mix(in srgb, var(--on-signal) 80%, var(--signal)); font-size: var(--step-small); }
+.quotes figcaption b { color: var(--on-signal); font-weight: 600; display: block; }
+.quotes figcaption .tag { display: block; font-family: var(--font-mono); font-size: var(--step--1); margin-top: 0.2rem; }
+@media (max-width: 860px) {
+  .quotes { grid-template-columns: 1fr; }
+  .quotes .lead { grid-row: auto; }
+  .quotes .lead blockquote { font-size: var(--step-2); }
+  .quotes figure + figure { border-top: 1px solid color-mix(in srgb, var(--on-signal) 30%, var(--signal)); padding-top: 2rem; }
+}
+
+/* Reserva */
+.booking .wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); }
+.info { display: grid; gap: 1.75rem; align-content: start; }
+.info dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.5rem; }
+.info dt { color: var(--muted); }
+.info dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: var(--step-small); }
+.info dd a { color: var(--ink); text-underline-offset: 3px; }
+form {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: clamp(1.25rem, 3vw, 2rem); display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem;
+}
+.field { display: grid; gap: 0.4rem; min-width: 0; align-content: start; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-weight: 500; font-size: var(--step-small); }
+input:not([type="range"]), select, textarea {
+  font: inherit; color: var(--ink); background: var(--paper);
+  border: 1px solid var(--line-strong); border-radius: 8px; padding: 0.7rem 0.8rem; width: 100%;
+  caret-color: var(--cobalt);
+}
+::placeholder { color: var(--muted); opacity: 1; }
+input:not([type="range"]), select { height: 3rem; }
+textarea { resize: vertical; min-height: 6rem; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 1px; }
+.hint { font-size: var(--step--1); color: var(--muted); }
+.field input[aria-invalid="true"] { border-color: var(--danger); }
+.err-field { font-size: var(--step--1); color: var(--danger); }
+.err { grid-column: 1 / -1; font-size: var(--step--1); color: var(--danger); }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+/* La confirmación es el talón de la orden de trabajo: mismo lenguaje que la orden del proceso */
+.success {
+  grid-column: 1 / -1; display: grid; gap: 0.9rem; padding: 1.1rem 1.25rem;
+  background: var(--paper); border: 1px solid var(--line); border-top: 3px dashed var(--line-strong);
+  border-radius: 4px 4px 14px 14px; overflow-wrap: anywhere;
+}
+.success:focus { outline: none; }
+.stub-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; }
+.stub-head h3 { font-size: var(--step-1); font-weight: 900; font-stretch: 125%; text-transform: uppercase; letter-spacing: -0.01em; }
+.stub-head .mono { font-size: var(--step--1); color: var(--muted); }
+.stub-rows { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; font-size: var(--step-small); }
+.stub-rows dt { color: var(--muted); }
+.stub-rows dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.stub-next { font-size: var(--step-small); }
+@media (max-width: 480px) { .stub-rows { grid-template-columns: 1fr; gap: 0.1rem; } .stub-rows dd { text-align: left; margin-bottom: 0.5rem; } }
+.success, .err { transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out); }
+@starting-style { .success, .err { opacity: 0; transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { @starting-style { .success, .err { transform: none; } } }
+@media (max-width: 860px) { .booking .wrap { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { form { grid-template-columns: 1fr; } .form-foot .btn { width: 100%; justify-content: center; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+footer { border-top: 1px solid var(--line); padding-block: 2rem; color: var(--muted); font-size: var(--step-small); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem; }
+footer p { max-width: none; }
+footer a { color: var(--ink); text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+<a class="skip" href="#inicio">Saltar al contenido</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio">TALLER<span>/</span>CADENCIA</a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#reserva" aria-label="Reservar turno">Reservar<span class="long">turno</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1>Tu bici, <em>afinada <span class="keep">al diente.</span></em></h1>
+        <p>Taller de ruta y gravel en Chapinero. Mantenimiento, transmisión y bike fit para quienes suben La Calera cada fin de semana, con un reporte de cada pieza que tocamos.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#reserva">Reservar turno</a>
+          <a class="link" href="#servicios">Ver precios</a>
+        </div>
+        <p class="hero-note">Entrega en 48 h · Garantía de ajuste por 30 días</p>
+      </div>
+
+      <div class="calc" role="group" aria-labelledby="calc-title">
+        <div class="calc-head">
+          <h2 id="calc-title" class="calc-title">Calculadora de desarrollo</h2>
+          <span class="label">Rueda 700×28c</span>
+          <button class="toggle" id="spin-toggle" type="button" aria-pressed="true">Girar</button>
+        </div>
+        <svg class="drivetrain" viewBox="0 0 360 170" role="img" aria-label="Plato y piñón girando según la relación elegida">
+          <path class="chain" d="M110 30 L290 62 M110 140 L290 108"></path>
+          <g id="ring" class="spin"></g>
+          <g id="cog" class="spin"></g>
+        </svg>
+        <div class="sliders">
+          <div class="slider">
+            <label for="chainring">Plato (dientes)</label><output id="chainring-out" for="chainring">50</output>
+            <input id="chainring" type="range" min="34" max="53" value="50">
+          </div>
+          <div class="slider">
+            <label for="sprocket">Piñón (dientes)</label><output id="sprocket-out" for="sprocket">17</output>
+            <input id="sprocket" type="range" min="11" max="34" value="17">
+          </div>
+          <div class="slider">
+            <label for="rpm">Cadencia (rpm)</label><output id="rpm-out" for="rpm">90</output>
+            <input id="rpm" type="range" min="60" max="110" value="90">
+          </div>
+        </div>
+        <div class="readout">
+          <div><span class="label">Relación</span><strong id="ratio">2,94</strong></div>
+          <div><span class="label">Desarrollo</span><strong id="dev">6,28<small> m</small></strong></div>
+          <div><span class="label">Velocidad</span><strong id="speed">33,9<small> km/h</small></strong></div>
+        </div>
+        <p class="sr-only" id="calc-status" aria-live="polite"></p>
+        <p class="calc-note">El desarrollo son los metros que avanzas por pedalada. ¿Te quedas corto en la subida? Un casete más grande te ayuda; lo revisamos en el mantenimiento completo.</p>
+        <a class="btn ghost" id="fit-link" href="#reserva">Reservar con esta relación</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <div class="pricing">
+        <div class="sec-head">
+          <h2>Tarifas del taller. Precio fijo, sin sorpresas.</h2>
+          <p>Los repuestos se cobran aparte y siempre te los cotizamos antes de instalarlos. Si no aprobamos el cambio contigo, no se hace.</p>
+        </div>
+        <div class="tariff">
+        <article class="service">
+          <div class="tariff-line">
+            <h3>Ajuste rápido</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <div class="price">$85.000 <small>COP</small></div>
+          </div>
+          <p class="tariff-includes">Indexado de cambios, centrado de frenos, limpieza y lubricación de cadena, revisión de presión y torque.</p>
+          <div class="tariff-meta">
+            <span class="label">Mismo día</span>
+            <span class="tariff-when">Pídelo si los cambios saltan o un freno roza.</span>
+            <a class="btn ghost" href="#reserva" data-service="Ajuste rápido" aria-label="Reservar ajuste rápido">Reservar</a>
+          </div>
+        </article>
+        <article class="service featured">
+          <div class="tariff-line">
+            <h3>Mantenimiento completo <span class="badge">Más pedido</span></h3>
+            <span class="leader" aria-hidden="true"></span>
+            <div class="price">$240.000 <small>COP</small></div>
+          </div>
+          <p class="tariff-includes">Desarme y desengrase de transmisión, purga de frenos hidráulicos, engrase de rodamientos y dirección, medición de desgaste de cadena y reporte con fotos de cada pieza.</p>
+          <div class="tariff-meta">
+            <span class="label">48 horas</span>
+            <span class="tariff-when">Pídelo cada <span class="mono">3.000 km</span> o si los frenos se sienten esponjosos.</span>
+            <a class="btn ghost" href="#reserva" data-service="Mantenimiento completo" aria-label="Reservar mantenimiento completo">Reservar</a>
+          </div>
+        </article>
+        <article class="service">
+          <div class="tariff-line">
+            <h3>Bike fit</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <div class="price">$320.000 <small>COP</small></div>
+          </div>
+          <p class="tariff-includes">Entrevista y evaluación de movilidad, altura y retroceso de sillín, ajuste de calas y potencia, y una ficha impresa con tus medidas.</p>
+          <div class="tariff-meta">
+            <span class="label">Sesión de 2 horas</span>
+            <span class="tariff-when">Pídelo si te duelen las rodillas, la espalda o las manos al rodar.</span>
+            <a class="btn ghost" href="#reserva" data-service="Bike fit" aria-label="Reservar bike fit">Reservar</a>
+          </div>
+        </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap">
+      <div class="process">
+      <div class="process-copy">
+      <div class="sec-head solo">
+        <h2>De la recepción a la prueba de ruta.</h2>
+        <p>Cada bici pasa por los mismos cuatro pasos, con un mecánico responsable de principio a fin.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Recepción</h3><p>Revisamos la bici contigo, anotamos ruidos y síntomas y te damos un número de orden.</p><span class="time">15 min</span></li>
+        <li><h3>Diagnóstico</h3><p>Medimos cadena, pastillas y juego de rodamientos. Te enviamos la cotización por WhatsApp.</p><span class="time">Mismo día</span></li>
+        <li><h3>Trabajo</h3><p>Solo hacemos lo que aprobaste. Cada tornillo va al torque que indica el fabricante.</p><span class="time">24–48 h</span></li>
+        <li><h3>Prueba de ruta</h3><p>Rodamos la bici antes de entregarla y te mostramos qué cambió.</p><span class="time">10 km</span></li>
+      </ol>
+      </div>
+
+      <figure class="ticket">
+        <div class="ticket-head">
+          <h3>Orden de trabajo</h3>
+          <span class="mono">N.º 2611 · 14 oct 2026</span>
+        </div>
+        <p class="ticket-bike">Bici de ruta, talla <span class="mono">54</span> · Shimano <span class="mono">105 11v</span> · Mantenimiento completo</p>
+        <div class="ticket-scroll">
+          <table>
+            <thead><tr><th scope="col">Pieza</th><th scope="col">Medición</th><th scope="col">Estado</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Cadena</th><td><span class="wear" style="--wear: 75%"><span>0,75 %</span></span></td><td class="changed">Cambiada</td></tr>
+              <tr><th scope="row">Casete 11-30</th><td>Desgaste leve</td><td>OK</td></tr>
+              <tr><th scope="row">Pastillas del.</th><td>1,8 mm</td><td>OK</td></tr>
+              <tr><th scope="row">Pastillas tras.</th><td>0,9 mm</td><td class="changed">Cambiadas</td></tr>
+              <tr><th scope="row">Potencia</th><td>5 N·m</td><td>Ajustada</td></tr>
+              <tr><th scope="row">Tija</th><td>6 N·m</td><td>Ajustada</td></tr>
+              <tr><th scope="row">Presión</th><td>80 / 85 psi</td><td>Ajustada</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <dl class="ticket-foot">
+          <dt>Repuestos aprobados</dt><dd>$96.000</dd>
+          <dt>Prueba de ruta</dt><dd>10,4 km</dd>
+          <dt>Mecánico</dt><dd>Julián R.</dd>
+        </dl>
+        <figcaption>Ejemplo del reporte que recibes al recoger tu bici. La cadena se cambia al llegar a 0,75 % de estiramiento.</figcaption>
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones" class="voices">
+    <div class="wrap">
+      <div class="sec-head solo">
+        <h2>Lo que dicen quienes ruedan con nosotros.</h2>
+      </div>
+      <div class="quotes">
+        <figure class="lead">
+          <blockquote>“Llevaba meses con un clic en el pedalier. Lo encontraron en la primera revisión y me mostraron la pieza gastada.”</blockquote>
+          <figcaption><b>Mariana R.</b> Ruta, <span class="mono">6.000 km</span> al año. <span class="tag">Mantenimiento completo · pedalier</span></figcaption>
+        </figure>
+        <figure>
+          <blockquote>“Después del bike fit dejé de sentir la rodilla en las subidas largas. Me dieron una ficha con todas las medidas.”</blockquote>
+          <figcaption><b>Andrés P.</b> Gravel y randonnée. <span class="tag">Bike fit · rodilla</span></figcaption>
+        </figure>
+        <figure>
+          <blockquote>“Aprecio que me pregunten antes de cambiar cualquier repuesto. La cotización llegó igual a la factura.”</blockquote>
+          <figcaption><b>Camila T.</b> Ciclista urbana. <span class="tag">Ajuste rápido · cotización</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="reserva" class="booking">
+    <div class="wrap">
+      <div class="info">
+        <h2>Separa tu turno en el taller.</h2>
+        <dl>
+          <dt>Dirección</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Cra.%209%20%2358-14%2C%20Chapinero%2C%20Bogot%C3%A1" target="_blank" rel="noopener">Cra. 9 #58-14, Chapinero</a></dd>
+          <dt>Lun – Vie</dt><dd>08:00 – 18:30</dd>
+          <dt>Sábado</dt><dd>08:00 – 14:00</dd>
+          <dt>Domingo</dt><dd>Cerrado</dd>
+          <!-- TODO: número ficticio; reemplazar por uno propio antes de publicar -->
+          <dt>WhatsApp</dt><dd><a class="wa-link" href="https://wa.me/573105550142" target="_blank" rel="noopener">+57 310 555 0142</a></dd>
+        </dl>
+      </div>
+
+      <form id="booking-form" novalidate>
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" autocomplete="name" required maxlength="80" aria-describedby="name-err">
+          <span class="err-field" id="name-err" hidden></span>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="phone-hint phone-err">
+          <span class="hint" id="phone-hint">Celular de 10 dígitos, ej. 310 555 0142</span>
+          <span class="err-field" id="phone-err" hidden></span>
+        </div>
+        <div class="field">
+          <label for="service">Servicio</label>
+          <select id="service" name="service">
+            <option>Ajuste rápido</option>
+            <option selected>Mantenimiento completo</option>
+            <option>Bike fit</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Fecha de ingreso</label>
+          <input id="date" name="date" type="date" required aria-describedby="date-hint date-err">
+          <span class="hint" id="date-hint">Lunes a sábado. Los domingos cerramos.</span>
+          <span class="err-field" id="date-err" hidden></span>
+        </div>
+        <div class="field full">
+          <label for="notes">¿Qué le pasa a tu bici? <span class="hint">(opcional)</span></label>
+          <textarea id="notes" name="notes" maxlength="1000" placeholder="Ej. los cambios saltan en el piñón 15 y el freno trasero chilla."></textarea>
+          <span class="hint" id="notes-status" role="status"></span>
+        </div>
+        <noscript><p class="err">Este formulario necesita JavaScript. Escríbenos por WhatsApp al +57 310 555 0142.</p></noscript>
+        <p class="err" id="form-error" role="alert" hidden></p>
+        <div class="form-foot">
+          <span class="hint">Sin pago anticipado · Confirmamos en menos de 2 horas hábiles.</span>
+          <button class="btn" id="submit-btn" type="submit">Reservar turno</button>
+        </div>
+        <div class="success" id="form-success" role="status" tabindex="-1" hidden>
+          <div class="stub-head">
+            <h3 data-slot="title">Solicitud recibida</h3>
+            <span class="mono">N.º <span data-slot="order"></span> · pendiente de confirmar</span>
+          </div>
+          <dl class="stub-rows">
+            <dt>Cliente</dt><dd data-slot="name"></dd>
+            <dt>Servicio</dt><dd data-slot="service"></dd>
+            <dt>Ingreso</dt><dd data-slot="date"></dd>
+            <dt>WhatsApp</dt><dd data-slot="phone"></dd>
+          </dl>
+          <p class="stub-next"><strong>No tienes que hacer nada más.</strong> Te escribimos para confirmar el turno, y cotizamos antes de tocar cualquier pieza.</p>
+          <p class="hint">¿Prisa? <a class="link" data-slot="wa" href="https://wa.me/573105550142" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> · ¿Algo está mal? Corrígelo arriba y pulsa «Actualizar solicitud».</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Taller Cadencia · Negocio ficticio creado como pieza de portafolio.</p>
+    <p>Diseño y desarrollo: Samuel Arias · <a href="https://github.com/SagazArias/sagazarias.github.io">Código</a></p>
+    <a href="#inicio">Volver arriba</a>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const WHEEL_M = 2.136; // circunferencia 700×28c en metros
+  const $ = id => document.getElementById(id);
+
+  // velocidad (km/h) = rpm × relación × circunferencia × 60 / 1000
+  const calc = (ring, cog, rpm) => {
+    const ratio = ring / cog;
+    return { ratio, dev: ratio * WHEEL_M, speed: rpm * ratio * WHEEL_M * 60 / 1000 };
+  };
+  console.assert(Math.abs(calc(50, 25, 90).speed - 23.07) < 0.01, "calc() de velocidad incorrecto");
+
+  // Engranaje de n dientes trapezoidales; el plato lleva araña de 5 brazos como uno real
+  const gear = (g, n, cx, cy, r, cls, spider) => {
+    const pts = [], pitch = (2 * Math.PI) / n, root = r - 5;
+    const at = (rad, a) => (cx + rad * Math.cos(a)).toFixed(1) + "," + (cy + rad * Math.sin(a)).toFixed(1);
+    for (let i = 0; i < n; i++) {
+      const a = i * pitch;
+      pts.push(at(root, a - pitch * 0.32), at(r, a - pitch * 0.16), at(r, a + pitch * 0.16), at(root, a + pitch * 0.32));
+    }
+    let svg = `<polygon class="${cls}" points="${pts.join(" ")}"></polygon>`;
+    if (spider) {
+      svg += `<circle class="hole" cx="${cx}" cy="${cy}" r="${(r * 0.74).toFixed(1)}"></circle>`;
+      for (let k = 0; k < 5; k++) {
+        const a = (k * 2 * Math.PI) / 5 - Math.PI / 2;
+        svg += `<line class="arm" x1="${cx}" y1="${cy}" x2="${at(r * 0.78, a).split(",")[0]}" y2="${at(r * 0.78, a).split(",")[1]}"></line>`;
+      }
+      svg += `<circle class="${cls}" cx="${cx}" cy="${cy}" r="${(r * 0.22).toFixed(1)}"></circle><circle class="hole" cx="${cx}" cy="${cy}" r="${(r * 0.1).toFixed(1)}"></circle>`;
+    } else {
+      svg += `<circle class="hole" cx="${cx}" cy="${cy}" r="${(r * 0.32).toFixed(1)}"></circle>`;
+    }
+    g.innerHTML = svg;
+  };
+
+  const ringEl = $("ring"), cogEl = $("cog");
+  const turn = el => el.animate([{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }], { duration: 1000, iterations: Infinity });
+  const ringA = turn(ringEl), cogA = turn(cogEl);
+  const update = () => {
+    const ring = +$("chainring").value, cog = +$("sprocket").value, rpm = +$("rpm").value;
+    $("chainring-out").textContent = ring;
+    $("sprocket-out").textContent = cog;
+    $("rpm-out").textContent = rpm;
+    for (const el of document.querySelectorAll(".slider input"))
+      el.style.setProperty("--fill", (el.value - el.min) / (el.max - el.min) * 100 + "%");
+    const r = calc(ring, cog, rpm);
+    const fmt = (n, d) => n.toLocaleString("es-CO", { minimumFractionDigits: d, maximumFractionDigits: d });
+    $("ratio").textContent = fmt(r.ratio, 2);
+    $("dev").innerHTML = fmt(r.dev, 2) + "<small> m</small>";
+    $("speed").innerHTML = fmt(r.speed, 1) + "<small> km/h</small>";
+    // radio proporcional a los dientes, como en la transmisión real
+    gear(ringEl, ring, 110, 85, ring * 1.12, "ring", true);
+    gear(cogEl, cog, 290, 85, cog * 1.12, "cog");
+    // vueltas por segundo = rpm / 60, ralentizado ×4 para que se vea
+    ringA.updatePlaybackRate(rpm / 240);
+    cogA.updatePlaybackRate(rpm * r.ratio / 240);
+    document.querySelector(".chain").setAttribute("d",
+      `M110 ${85 - ring * 1.12} L290 ${85 - cog * 1.12} M110 ${85 + ring * 1.12} L290 ${85 + cog * 1.12}`);
+  };
+  ["chainring", "sprocket", "rpm"].forEach(id => {
+    $(id).addEventListener("input", update);
+    $(id).addEventListener("change", () => {
+      $("calc-status").textContent = `Relación ${$("ratio").textContent}, desarrollo ${$("dev").textContent}, velocidad ${$("speed").textContent}`;
+    });
+  });
+  update();
+
+  const svg = document.querySelector(".drivetrain"), btn = $("spin-toggle");
+  const setPaused = p => { svg.classList.toggle("paused", p); [ringA, cogA].forEach(a => p ? a.pause() : a.play()); btn.setAttribute("aria-pressed", !p); };
+  setPaused(matchMedia("(prefers-reduced-motion: reduce)").matches);
+  btn.addEventListener("click", () => setPaused(!svg.classList.contains("paused")));
+
+  // Formulario: validación en cliente; no hay backend, así que se confirma en la página
+  const form = $("booking-form"), err = $("form-error"), ok = $("form-success"), date = $("date");
+  // fecha local en ISO; se recalcula para que una pestaña abierta desde ayer no acepte fechas pasadas
+  const todayISO = () => { const t = new Date(); return new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+  date.min = todayISO();
+
+  // Celular colombiano: 310-555-0142, (310) 555 0142, +57 310 555 0142
+  const phoneOk = v => /^(57)?3\d{9}$/.test(v.replace(/\D/g, ""));
+  const isSunday = v => new Date(v + "T00:00").getDay() === 0;
+  console.assert(phoneOk("310-555-0142") && phoneOk("+57 310 555 0142") && !phoneOk("++++++++++") && !phoneOk("12345") && !phoneOk("601 555 0142"), "phoneOk");
+  console.assert(isSunday("2026-10-25") && !isSunday("2026-10-24"), "isSunday");
+
+  const rules = {
+    name: v => v.trim() ? "" : "Escribe tu nombre.",
+    phone: v => !v.trim() ? "Escribe tu número de WhatsApp."
+      : phoneOk(v) ? "" : "Revisa el número: debe ser un celular de 10 dígitos, ej. 310 555 0142.",
+    date: v => !v ? "Elige una fecha de ingreso."
+      : v < todayISO() ? "Elige una fecha desde hoy."
+      : isSunday(v) ? "Los domingos cerramos. Elige un día de lunes a sábado." : "",
+  };
+  console.assert(rules.date("2099-01-04").startsWith("Los domingos") && rules.phone("12") && !rules.phone("3105550142"), "rules");
+  const check = el => {
+    const msg = rules[el.id](el.value), out = $(el.id + "-err");
+    out.textContent = msg;
+    out.hidden = !msg;
+    el.setAttribute("aria-invalid", !!msg);
+    return !msg;
+  };
+  // Avisar al terminar un campo; si ya estaba en error, revalidar mientras se corrige
+  ["name", "phone"].forEach(id => {
+    $(id).addEventListener("blur", e => { if (e.target.value.trim()) check(e.target); });
+    $(id).addEventListener("input", e => { if (e.target.getAttribute("aria-invalid") === "true") check(e.target); });
+  });
+  date.addEventListener("change", () => check(date));
+
+  // Cada servicio lleva su selección al formulario
+  document.querySelectorAll("[data-service]").forEach(a => a.addEventListener("click", () => {
+    $("service").value = a.dataset.service;
+    $("notes-status").textContent = `Elegimos ${a.dataset.service}.`;
+  }));
+
+  // Lleva la relación elegida a la reserva del mantenimiento
+  $("fit-link").addEventListener("click", () => {
+    const line = `Relación actual: ${$("chainring").value}/${$("sprocket").value} a ${$("rpm").value} rpm.`;
+    $("service").value = "Mantenimiento completo";
+    const notes = $("notes");
+    notes.value = notes.value.replace(/^Relación actual: .*$/m, "").trim();
+    notes.value = notes.value ? line + "\n" + notes.value : line;
+    $("notes-status").textContent = `Elegimos Mantenimiento completo y agregamos tu relación ${$("chainring").value}/${$("sprocket").value} a las notas.`;
+  });
+
+  document.querySelectorAll(".wa-link").forEach(a => a.addEventListener("click", () => {
+    const rel = ($("notes").value.match(/^Relación actual: .*$/m) || [""])[0];
+    const text = `Hola, quiero reservar ${$("service").value.toLowerCase()} en Taller Cadencia.${rel ? " " + rel : ""}`;
+    a.href = "https://wa.me/573105550142?text=" + encodeURIComponent(text);
+  }));
+
+  const PRICES = { "Ajuste rápido": "$85.000", "Mantenimiento completo": "$240.000", "Bike fit": "$320.000" };
+  const ORDER = 2612; // la siguiente a la orden de ejemplo N.º 2611
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    ok.hidden = true;
+    date.min = todayISO();
+    const bad = ["name", "phone", "date"].map($).filter(el => !check(el));
+    if (bad.length) {
+      err.textContent = bad.length > 1 ? `Revisa los ${bad.length} campos marcados.` : "Revisa el campo marcado.";
+      err.hidden = false;
+      bad[0].focus();
+      return;
+    }
+    err.hidden = true;
+    ["name", "phone", "date"].forEach(id => $(id).removeAttribute("aria-invalid"));
+    const d = new Date(date.value + "T00:00").toLocaleDateString("es-CO", { weekday: "long", day: "numeric", month: "long" });
+    const name = $("name").value.trim(), svc = $("service").value;
+    const tel = $("phone").value.replace(/\D/g, "").slice(-10).replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
+    const slot = k => ok.querySelector(`[data-slot="${k}"]`);
+    // Reenviar actualiza la misma orden en vez de crear otra
+    slot("title").textContent = ok.dataset.sent ? "Solicitud actualizada" : "Solicitud recibida";
+    slot("order").textContent = ORDER;
+    slot("name").textContent = name;
+    slot("service").textContent = `${svc} · ${PRICES[svc]} COP`;
+    slot("date").textContent = d;
+    slot("phone").textContent = tel;
+    slot("wa").href = "https://wa.me/573105550142?text=" + encodeURIComponent(`Hola, soy ${name}. Quiero confirmar la solicitud N.º ${ORDER}: ${svc.toLowerCase()} el ${d}.`);
+    ok.dataset.sent = "1";
+    // ya hay solicitud: el botón principal pasa a ser una corrección, no un segundo envío
+    $("submit-btn").textContent = "Actualizar solicitud";
+    $("submit-btn").classList.add("ghost");
+    ok.hidden = false;
+    ok.focus();
+  });
+})();
+</script>
+</body>
+</html>
