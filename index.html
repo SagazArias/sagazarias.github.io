@@ -699,10 +699,10 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
   const todayISO = () => { const t = new Date(); return new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
   date.min = todayISO();
 
-  // Celular colombiano: 310-555-0142, (310) 555 0142, +57 310 555 0142
+  // Celular colombiano: 300-000-0000, (300) 000 0000, +57 300 000 0000
   const phoneOk = v => /^(57)?3\d{9}$/.test(v.replace(/\D/g, ""));
   const isSunday = v => new Date(v + "T00:00").getDay() === 0;
-  console.assert(phoneOk("310-555-0142") && phoneOk("+57 310 555 0142") && !phoneOk("++++++++++") && !phoneOk("12345") && !phoneOk("601 555 0142"), "phoneOk");
+  console.assert(phoneOk("300-000-0000") && phoneOk("+57 300 000 0000") && !phoneOk("++++++++++") && !phoneOk("12345") && !phoneOk("601 000 0000"), "phoneOk");
   console.assert(isSunday("2026-10-25") && !isSunday("2026-10-24"), "isSunday");
 
   const rules = {
@@ -713,7 +713,7 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
       : v < todayISO() ? "Elige una fecha desde hoy."
       : isSunday(v) ? "Los domingos cerramos. Elige un día de lunes a sábado." : "",
   };
-  console.assert(rules.date("2099-01-04").startsWith("Los domingos") && rules.phone("12") && !rules.phone("3105550142"), "rules");
+  console.assert(rules.date("2099-01-04").startsWith("Los domingos") && rules.phone("12") && !rules.phone("3000000000"), "rules");
   const check = el => {
     const msg = rules[el.id](el.value), out = $(el.id + "-err");
     out.textContent = msg;
