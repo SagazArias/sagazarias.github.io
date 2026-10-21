@@ -13,6 +13,16 @@
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="g-pocillo" viewBox="0 0 32 32"><path d="M7 12h15v8a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z"/><path d="M22 14h2.5a3 3 0 0 1 0 6H22"/><path d="M12 4c-1.5 2 1.5 3 0 5M17 4c-1.5 2 1.5 3 0 5"/></symbol>
+    <symbol id="g-perico" viewBox="0 0 32 32"><path d="M9 11h14v6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z"/><path d="M5 26h22"/><path d="M12 15c2 1.5 6 1.5 8 0"/></symbol>
+    <symbol id="g-prensa" viewBox="0 0 32 32"><path d="M9 9h12v17H9z"/><path d="M7 9h16"/><path d="M15 9V4M13 4h4"/><path d="M21 12h2.5a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5H21"/><path d="M9 17h12"/></symbol>
+    <symbol id="g-panela" viewBox="0 0 32 32"><path d="M5 12l11-5 11 5v10l-11 5-11-5z"/><path d="M5 12l11 5 11-5M16 17v10"/></symbol>
+    <symbol id="g-almojabana" viewBox="0 0 32 32"><circle cx="16" cy="17" r="10"/><path d="M10 15c3-3 9-3 12 0"/><path d="M12 21h.01M20 21h.01M16 22h.01"/></symbol>
+    <symbol id="g-torta" viewBox="0 0 32 32"><path d="M4 24l24-11v11z"/><path d="M8 22.2l20-9.2M4 24h24"/><path d="M19 11.5c1-2 3-2 4-1"/></symbol>
+    <symbol id="g-aromatica" viewBox="0 0 32 32"><path d="M16 28V7"/><path d="M16 12c-5 0-7.5-3-7.5-6.5 5 0 7.5 3 7.5 6.5z"/><path d="M16 18c5 0 7.5-3 7.5-6.5-5 0-7.5 3-7.5 6.5z"/><path d="M16 24c-5 0-7.5-3-7.5-6.5 5 0 7.5 3 7.5 6.5z"/></symbol>
+    <symbol id="g-lulo" viewBox="0 0 32 32"><path d="M8 9h14l-2 18h-10z"/><path d="M9 14h12"/><path d="M17 9l4-6"/><circle cx="23.5" cy="9" r="3.5"/></symbol>
+  </svg>
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
   <p class="notice">
@@ -29,7 +39,7 @@
         <li><a href="#ubicacion">Ubicación</a></li>
       </ul>
       <details class="nav-phone">
-        <summary>Menú</summary>
+        <summary>Secciones</summary>
         <ul>
           <li><a href="#casa">La casa</a></li>
           <li><a href="#carta">Carta</a></li>
@@ -62,7 +72,7 @@
           <a class="link" href="#carta">Ver la carta</a>
         </div>
       </div>
-      <div class="porton" aria-hidden="false">
+      <div class="porton">
         <figure class="porton-view shutter">
           <img src="assets/callerealsalento.jpg" width="1600" height="1200"
                alt="La Calle Real de Salento: casas de bahareque blancas con balcones y puertas pintadas de azul, rojo y verde">
@@ -129,7 +139,7 @@
           </div>
           <ul class="items">
             <li class="item" data-reveal>
-              <span class="bullet bullet-sky" aria-hidden="true"></span>
+              <span class="bullet bullet-sky" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-pocillo"/></svg></span>
               <div><p class="item-name"><span>Tinto de finca</span><span>$3.500</span></p>
               <p class="item-desc">El de siempre, pero de una sola finca. Colado en tela y servido en pocillo de peltre.</p></div>
             </li>
@@ -139,7 +149,7 @@
               <p class="item-desc">Dieciocho gramos, treinta segundos. Doble sin costo adicional antes de las nueve.</p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-sand" aria-hidden="true"></span>
+              <span class="bullet bullet-sand" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-perico"/></svg></span>
               <div><p class="item-name"><span>Perico</span><span>$5.500</span></p>
               <p class="item-desc">Espresso cortado con un chorro de leche caliente, como se pide en la región.</p></div>
             </li>
@@ -149,12 +159,12 @@
               <p class="item-desc">Leche de la vereda Palestina, espumada a mano. Se puede pedir con leche de almendras.</p></div>
             </li>
             <li class="item" data-reveal>
-              <img class="bullet" src="assets/manual-drip-pour-over-coffee.jpg" width="1600" height="1065" loading="lazy" decoding="async" alt="">
+              <img class="bullet" src="assets/menu/pour-over-bullet.jpg" width="200" height="133" loading="lazy" decoding="async" alt="">
               <div><p class="item-name"><span>Filtrado en V60</span><span>$9.500</span></p>
               <p class="item-desc">Trescientos mililitros de taza limpia, la mejor forma de probar la finca del mes.</p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <span class="bullet bullet-yellow" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-prensa"/></svg></span>
               <div><p class="item-name"><span>Prensa para dos</span><span>$16.000</span></p>
               <p class="item-desc">Una prensa francesa de seiscientos mililitros y dos pocillos para el patio.</p></div>
             </li>
@@ -164,7 +174,7 @@
               <p class="item-desc">Doce horas en agua fría, servido con hielo y una rodaja de limón. <span class="item-tag">Solo de 11:00 a. m. en adelante</span></p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-ink" aria-hidden="true"></span>
+              <span class="bullet bullet-ink" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-panela"/></svg></span>
               <div><p class="item-name"><span>Café con panela</span><span>$5.000</span></p>
               <p class="item-desc">Tinto endulzado con panela de trapiche de Calarcá, para quien no toma azúcar blanca.</p></div>
             </li>
@@ -183,7 +193,7 @@
               <p class="item-desc">De almidón de yuca y queso costeño, sale del horno cada hora en punto. <span class="item-tag">Sin gluten</span></p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <span class="bullet bullet-yellow" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-almojabana"/></svg></span>
               <div><p class="item-name"><span>Almojábana</span><span>$3.500</span></p>
               <p class="item-desc">Cuajada y harina de maíz, blanda por dentro. La pareja natural del tinto. <span class="item-tag">Sin gluten</span></p></div>
             </li>
@@ -198,7 +208,7 @@
               <p class="item-desc">Redondos y dorados, fritos al momento. Los fines de semana se acaban antes del mediodía.</p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-sky" aria-hidden="true"></span>
+              <span class="bullet bullet-sky" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-torta"/></svg></span>
               <div><p class="item-name"><span>Torta de banano</span><span>$7.000</span></p>
               <p class="item-desc">Con banano maduro del patio y nueces. Una tajada gruesa, tibia si la pides. <span class="item-tag">Contiene gluten y nueces</span></p></div>
             </li>
@@ -222,12 +232,12 @@
               <p class="item-desc">Caliente en la tarde fría de Salento, o con hielo cuando sale el sol.</p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <span class="bullet bullet-yellow" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-aromatica"/></svg></span>
               <div><p class="item-name"><span>Aromática del patio</span><span>$4.000</span></p>
               <p class="item-desc">Hierbabuena, limoncillo y cidrón cortados del patio esa misma mañana.</p></div>
             </li>
             <li class="item" data-reveal>
-              <span class="bullet bullet-sand" aria-hidden="true"></span>
+              <span class="bullet bullet-sand" aria-hidden="true"><svg class="glyph" viewBox="0 0 32 32"><use href="#g-lulo"/></svg></span>
               <div><p class="item-name"><span>Jugo de lulo</span><span>$7.500</span></p>
               <p class="item-desc">En agua o en leche, con lulo de las fincas de la vía al Cocora.</p></div>
             </li>
@@ -251,7 +261,7 @@
           </p>
         </div>
         <figure class="frame" data-frame data-reveal>
-          <button class="frame-stage arch" type="button" aria-label="Ver la siguiente foto de Salento">
+          <button class="frame-stage arch" type="button" aria-describedby="frame-hint">
             <img class="is-on" src="assets/calle-5-salento-01.jpg" width="1600" height="1067" loading="lazy" decoding="async"
                  data-caption="La Calle 5 subiendo hacia la iglesia de Salento."
                  alt="Una calle de Salento con casas de balcones verdes y naranjas y la torre amarilla de la iglesia al fondo">
@@ -265,6 +275,7 @@
                  data-caption="Café maduro en una finca colombiana, entre verde y rojo."
                  alt="Rama de un cafeto con cerezas de café verdes, amarillas y rojas">
           </button>
+          <p class="frame-hint" id="frame-hint">Toca la foto para ver otra.</p>
           <figcaption class="frame-caption" aria-live="polite">La Calle 5 subiendo hacia la iglesia de Salento.</figcaption>
         </figure>
       </div>
@@ -286,7 +297,7 @@
             <p>Se lava, se seca al sol en la marquesina y se trilla hasta dejar el grano verde.</p>
           </div>
           <div class="stage" data-reveal>
-            <div class="tile tile-ink"><figure class="arch"><video autoplay muted loop playsinline preload="metadata" poster="assets/kaffe-ystad-2024-poster.jpg" width="854" height="480" aria-hidden="true"><source src="assets/kaffe-ystad-2024.webm" type="video/webm"></video></figure></div>
+            <div class="tile tile-ink"><figure class="arch"><video data-loop muted loop playsinline preload="none" poster="assets/kaffe-ystad-2024-poster.jpg" width="854" height="480" aria-hidden="true"><source src="assets/kaffe-ystad-2024.webm" type="video/webm"></video></figure></div>
             <h3>Tostado a las seis</h3>
             <p>Cinco kilos por tanda en la tostadora del portón, en tueste medio, nunca oscuro.</p>
           </div>
@@ -343,9 +354,9 @@
                 <text x="395" y="462" font-size="24" font-weight="600" text-anchor="middle">Bolívar</text>
                 <text x="395" y="48" font-size="24" text-anchor="middle">Al mirador</text>
                 <text x="395" y="78" font-size="24" text-anchor="middle">Alto de la Cruz</text>
-                <text x="16" y="172" font-size="24" font-weight="600">El Portón</text>
-                <text x="16" y="202" font-size="24">Calle Real</text>
-                <text x="16" y="226" font-size="20">#6-14</text>
+                <text x="258" y="166" font-size="24" font-weight="600" text-anchor="end">El Portón</text>
+                <text x="258" y="194" font-size="20" text-anchor="end">Calle Real</text>
+                <text x="258" y="218" font-size="20" text-anchor="end">#6-14</text>
               </g>
               <path d="M268 210 v-26 a14 14 0 0 1 28 0 v26 z" fill="#b0298f"/>
             </svg>
@@ -369,28 +380,24 @@
           <div class="coupon-left">
             <h2 id="reservar-titulo" class="coupon-title">Aparta tu mesa</h2>
             <p>
-              Tenemos doce sillas. Llena estos cuatro datos y se abrirá WhatsApp con el mensaje ya escrito;
-              solo tienes que enviarlo.
+              Tenemos doce sillas. Llena estos cuatro datos y se abrirá WhatsApp con el mensaje ya escrito.
+              Como es un sitio de muestra no lleva número: WhatsApp te pedirá elegir el chat.
             </p>
           </div>
           <div class="coupon-right">
-            <label class="sr-only" for="f-nombre">Tu nombre</label>
-            <input id="f-nombre" type="text" autocomplete="given-name" placeholder="Tu nombre" required>
-            <label class="sr-only" for="f-personas">Cuántas personas</label>
+            <label class="field-label" for="f-nombre">Tu nombre</label>
+            <input id="f-nombre" type="text" autocomplete="given-name" placeholder="Ana" required>
+            <label class="field-label" for="f-personas">Cuántas personas</label>
             <select id="f-personas" required>
-              <option value="" disabled selected>Cuántas personas</option>
+              <option value="" disabled selected>Elige</option>
               <option>1 persona</option><option>2 personas</option><option>3 personas</option>
               <option>4 personas</option><option>5 personas</option><option>6 personas</option>
             </select>
-            <label class="sr-only" for="f-dia">Qué día</label>
-            <input id="f-dia" type="date" required>
-            <label class="sr-only" for="f-hora">A qué hora</label>
+            <label class="field-label" for="f-dia">Qué día</label>
+            <input id="f-dia" type="date" required aria-describedby="f-error">
+            <label class="field-label" for="f-hora">A qué hora</label>
             <select id="f-hora" required>
-              <option value="" disabled selected>A qué hora</option>
-              <option>8:00 a. m.</option><option>9:00 a. m.</option><option>10:00 a. m.</option>
-              <option>11:00 a. m.</option><option>12:00 m.</option><option>2:00 p. m.</option>
-              <option>3:00 p. m.</option><option>4:00 p. m.</option><option>5:00 p. m.</option>
-              <option>6:00 p. m.</option>
+              <option value="">Primero elige el día</option>
             </select>
             <input type="hidden" name="text" id="f-text" value="Hola, Café El Portón. Quiero apartar una mesa.">
             <p class="form-error" id="f-error" role="alert" hidden></p>
