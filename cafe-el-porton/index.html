@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Café El Portón · Salento, Quindío</title>
+  <meta name="description" content="Café El Portón: café de una sola finca, tostado cada mañana en una casa de bahareque de la Calle Real de Salento. Proyecto ficticio de portafolio de Samuel Arias.">
+  <meta name="theme-color" content="#cbe4f2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <p class="notice">
+    Sitio ficticio: Café El Portón no existe. Es una pieza de portafolio diseñada y programada por
+    <a href="#autor">Samuel Arias</a>.
+  </p>
+
+  <header class="top">
+    <a class="wordmark" href="#inicio" aria-label="Café El Portón, inicio">El Portón</a>
+    <nav class="nav" aria-label="Principal">
+      <ul class="nav-links">
+        <li><a href="#carta">Carta</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+      <details class="nav-phone">
+        <summary>Menú</summary>
+        <ul>
+          <li><a href="#casa">La casa</a></li>
+          <li><a href="#carta">Carta</a></li>
+          <li><a href="#salento">Salento</a></li>
+          <li><a href="#horarios">Horarios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#reservar">Reservar</a></li>
+        </ul>
+      </details>
+      <a class="nav-action" href="#reservar">Reservar</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- Hero: the fuchsia portón at full scale, Calle Real seen through it -->
+    <section class="hero" id="inicio" aria-labelledby="titulo">
+      <div class="hero-text">
+        <h1 id="titulo" data-reveal><span>Café de una</span> <span>sola finca</span></h1>
+        <p class="hero-lead" data-reveal>
+          Café El Portón tuesta cada mañana el grano de una sola finca del Quindío y lo sirve detrás del
+          portón fucsia de la Calle Real, en Salento.
+        </p>
+        <p class="status" id="estado" data-reveal aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Abrimos de miércoles a lunes desde las 7:00 a. m.</span>
+        </p>
+        <div class="hero-actions" data-reveal>
+          <a class="button" href="#reservar">Reservar mesa</a>
+          <a class="link" href="#carta">Ver la carta</a>
+        </div>
+      </div>
+      <div class="porton" aria-hidden="false">
+        <figure class="porton-view shutter">
+          <img src="assets/callerealsalento.jpg" width="1600" height="1200"
+               alt="La Calle Real de Salento: casas de bahareque blancas con balcones y puertas pintadas de azul, rojo y verde">
+        </figure>
+      </div>
+    </section>
+
+    <!-- About: inset dark panel, the street from above inside the arch -->
+    <section class="casa" id="casa" aria-labelledby="casa-titulo">
+      <div class="casa-panel">
+        <div class="casa-left">
+          <h2 id="casa-titulo" class="casa-statement" data-reveal>Tostamos a las seis.</h2>
+          <p class="casa-sub" data-reveal>A las siete abrimos el portón, y el primer tinto sale con el grano todavía tibio.</p>
+          <figure class="arch casa-photo" data-reveal>
+            <img src="assets/carrera-6-salento-01.jpg" width="1067" height="1600" loading="lazy" decoding="async"
+                 alt="La Calle Real de Salento vista desde el mirador: dos filas de tejados de barro a lado y lado de la calle">
+          </figure>
+        </div>
+        <div class="casa-right">
+          <div class="casa-block" data-reveal>
+            <h3>La finca del mes</h3>
+            <p>
+              Cada mes compramos la cosecha de una sola finca del Quindío y no la mezclamos con nada. En
+              octubre es Finca La Esperanza, vereda Boquía: 1.900 metros, variedad Castillo, proceso lavado.
+              Sabe a panela, mandarina y cacao.
+            </p>
+          </div>
+          <div class="casa-block" data-reveal>
+            <h3>Una casa de bahareque</h3>
+            <p>
+              Ocupamos una casa de 1890 hecha de guadua, barro y cal, con un patio de doce sillas. La
+              tostadora está junto al portón, así que a las seis de la mañana la calle entera huele a café.
+            </p>
+          </div>
+          <div class="casa-block" data-reveal>
+            <h3>El martes vamos a la finca</h3>
+            <p>
+              Ese día cerramos. Subimos a catar la cosecha siguiente y a pagarla directamente a quien la
+              cultivó.
+            </p>
+          </div>
+          <a class="button" href="#carta" data-reveal>Ver la carta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu: two columns, photo bullets cut to the arch -->
+    <section class="carta" id="carta" aria-labelledby="carta-titulo">
+      <div class="wrap">
+        <div class="carta-head">
+          <h2 id="carta-titulo" class="h-section" data-reveal>La carta</h2>
+          <p class="carta-note" data-reveal>Precios en pesos colombianos, impuestos incluidos. Todo el café de la carta es de la finca del mes.</p>
+        </div>
+        <nav class="carta-jump" aria-label="Secciones de la carta">
+          <a href="#cafe">Café</a>
+          <a href="#horno">Del horno</a>
+          <a href="#sin-cafe">Sin café</a>
+        </nav>
+
+        <div class="cat" id="cafe">
+          <div class="cat-head" data-reveal>
+            <h3>Café</h3>
+            <span>8 preparaciones</span>
+          </div>
+          <ul class="items">
+            <li class="item" data-reveal>
+              <span class="bullet bullet-sky" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Tinto de finca</span><span>$3.500</span></p>
+              <p class="item-desc">El de siempre, pero de una sola finca. Colado en tela y servido en pocillo de peltre.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/espresso-coffee-01.jpg" width="500" height="333" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Espresso</span><span>$5.000</span></p>
+              <p class="item-desc">Dieciocho gramos, treinta segundos. Doble sin costo adicional antes de las nueve.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-sand" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Perico</span><span>$5.500</span></p>
+              <p class="item-desc">Espresso cortado con un chorro de leche caliente, como se pide en la región.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/cappuccino-and-cookie.jpg" width="500" height="281" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Capuchino</span><span>$8.000</span></p>
+              <p class="item-desc">Leche de la vereda Palestina, espumada a mano. Se puede pedir con leche de almendras.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/manual-drip-pour-over-coffee.jpg" width="1600" height="1065" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Filtrado en V60</span><span>$9.500</span></p>
+              <p class="item-desc">Trescientos mililitros de taza limpia, la mejor forma de probar la finca del mes.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Prensa para dos</span><span>$16.000</span></p>
+              <p class="item-desc">Una prensa francesa de seiscientos mililitros y dos pocillos para el patio.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/a-glass-of-cold-brew-coffee-with.jpg" width="480" height="640" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Cold brew</span><span>$10.000</span></p>
+              <p class="item-desc">Doce horas en agua fría, servido con hielo y una rodaja de limón. <span class="item-tag">Solo de 11:00 a. m. en adelante</span></p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-ink" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Café con panela</span><span>$5.000</span></p>
+              <p class="item-desc">Tinto endulzado con panela de trapiche de Calarcá, para quien no toma azúcar blanca.</p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cat" id="horno">
+          <div class="cat-head" data-reveal>
+            <h3>Del horno</h3>
+            <span>5 para acompañar</span>
+          </div>
+          <ul class="items">
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/pandeyuca-pandebono-y-almojabana-colombia.jpg" width="500" height="375" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Pandebono</span><span>$3.000</span></p>
+              <p class="item-desc">De almidón de yuca y queso costeño, sale del horno cada hora en punto. <span class="item-tag">Sin gluten</span></p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Almojábana</span><span>$3.500</span></p>
+              <p class="item-desc">Cuajada y harina de maíz, blanda por dentro. La pareja natural del tinto. <span class="item-tag">Sin gluten</span></p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/arepa-de-chocolo.jpg" width="500" height="333" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Arepa de chócolo</span><span>$9.000</span></p>
+              <p class="item-desc">Maíz tierno a la plancha con quesito campesino y mantequilla.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/bunuelos-colombianos-24221303805.jpg" width="500" height="333" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Buñuelos, tres</span><span>$6.000</span></p>
+              <p class="item-desc">Redondos y dorados, fritos al momento. Los fines de semana se acaban antes del mediodía.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-sky" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Torta de banano</span><span>$7.000</span></p>
+              <p class="item-desc">Con banano maduro del patio y nueces. Una tajada gruesa, tibia si la pides. <span class="item-tag">Contiene gluten y nueces</span></p></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cat" id="sin-cafe">
+          <div class="cat-head" data-reveal>
+            <h3>Sin café</h3>
+            <span>4 bebidas</span>
+          </div>
+          <ul class="items">
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/chocolate-santafereno-3279116391.jpg" width="500" height="375" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Chocolate con queso</span><span>$9.500</span></p>
+              <p class="item-desc">Chocolate de mesa batido con molinillo, con queso para hundir y una almojábana.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <img class="bullet" src="assets/menu/cup-of-aguapanela-con-limon.jpg" width="500" height="335" loading="lazy" decoding="async" alt="">
+              <div><p class="item-name"><span>Aguapanela con limón</span><span>$4.500</span></p>
+              <p class="item-desc">Caliente en la tarde fría de Salento, o con hielo cuando sale el sol.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-yellow" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Aromática del patio</span><span>$4.000</span></p>
+              <p class="item-desc">Hierbabuena, limoncillo y cidrón cortados del patio esa misma mañana.</p></div>
+            </li>
+            <li class="item" data-reveal>
+              <span class="bullet bullet-sand" aria-hidden="true"></span>
+              <div><p class="item-name"><span>Jugo de lulo</span><span>$7.500</span></p>
+              <p class="item-desc">En agua o en leche, con lulo de las fincas de la vía al Cocora.</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery: one arched frame, the town changes inside it -->
+    <section class="salento" id="salento" aria-labelledby="salento-titulo">
+      <div class="wrap salento-grid">
+        <div class="salento-text">
+          <h2 id="salento-titulo" class="h-section" data-reveal>Salento, de camino</h2>
+          <p data-reveal>
+            Casi todos pasan por aquí antes de subir al Valle de Cocora. Abrimos a las siete para que el
+            tinto alcance al primer Willys que sale de la plaza, y cerramos cuando baja el último.
+          </p>
+          <p data-reveal>
+            Desde el portón se ven los balcones de la Calle Real, la iglesia al fondo y, los días claros,
+            las palmas de cera en el filo de la montaña.
+          </p>
+        </div>
+        <figure class="frame" data-frame data-reveal>
+          <button class="frame-stage arch" type="button" aria-label="Ver la siguiente foto de Salento">
+            <img class="is-on" src="assets/calle-5-salento-01.jpg" width="1600" height="1067" loading="lazy" decoding="async"
+                 data-caption="La Calle 5 subiendo hacia la iglesia de Salento."
+                 alt="Una calle de Salento con casas de balcones verdes y naranjas y la torre amarilla de la iglesia al fondo">
+            <img src="assets/jeep-willys-salento-1.jpg" width="1280" height="853" loading="lazy" decoding="async"
+                 data-caption="Los Willys de la plaza de Bolívar, que salen hacia el Cocora."
+                 alt="Una fila de jeeps Willys rojos y azules estacionados bajo las palmas de la plaza de Salento">
+            <img src="assets/valle-de-cocora-colombia-03.jpg" width="1600" height="1067" loading="lazy" decoding="async"
+                 data-caption="Palmas de cera en el Valle de Cocora, a once kilómetros."
+                 alt="Palmas de cera muy altas sobre los potreros verdes del Valle de Cocora">
+            <img src="assets/coffee-cherries-of-varying-ripeness-on-a.jpg" width="1600" height="1200" loading="lazy" decoding="async"
+                 data-caption="Café maduro en una finca colombiana, entre verde y rojo."
+                 alt="Rama de un cafeto con cerezas de café verdes, amarillas y rojas">
+          </button>
+          <figcaption class="frame-caption" aria-live="polite">La Calle 5 subiendo hacia la iglesia de Salento.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- How it works: tiles that grow, from the tree to the cup -->
+    <section class="grano" id="grano" aria-labelledby="grano-titulo">
+      <div class="wrap">
+        <div class="tiles">
+          <h2 id="grano-titulo" class="h-section grano-title" data-reveal>Del árbol a la taza</h2>
+          <div class="stage" data-reveal>
+            <div class="tile tile-sky"><figure class="arch"><img src="assets/coffee-cherries-of-varying-ripeness-on-a.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Cerezas de café de distintos grados de madurez en la rama"></figure></div>
+            <h3>Cosechado a mano</h3>
+            <p>En la finca solo se recoge la cereza roja, pasada tres o cuatro veces por el mismo surco.</p>
+          </div>
+          <div class="stage" data-reveal>
+            <div class="tile tile-sand"><figure class="arch"><img src="assets/starr-180616-4065-coffea-arabica-homegrown-and.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Granos de café verde ya secos y sin pergamino"></figure></div>
+            <h3>Secado y trillado</h3>
+            <p>Se lava, se seca al sol en la marquesina y se trilla hasta dejar el grano verde.</p>
+          </div>
+          <div class="stage" data-reveal>
+            <div class="tile tile-ink"><figure class="arch"><video autoplay muted loop playsinline preload="metadata" poster="assets/kaffe-ystad-2024-poster.jpg" width="854" height="480" aria-hidden="true"><source src="assets/kaffe-ystad-2024.webm" type="video/webm"></video></figure></div>
+            <h3>Tostado a las seis</h3>
+            <p>Cinco kilos por tanda en la tostadora del portón, en tueste medio, nunca oscuro.</p>
+          </div>
+          <div class="stage" data-reveal>
+            <div class="tile tile-accent"><figure class="arch"><img src="assets/manual-drip-pour-over-coffee.jpg" width="1600" height="1065" loading="lazy" decoding="async" alt="Café filtrándose en un cono de vidrio sobre una jarra"></figure></div>
+            <h3>Colado al pedirlo</h3>
+            <p>Molemos cada taza en el momento. El café que sobra del día se regala a las siete en punto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit: opening hours with today marked, and the drawn map -->
+    <section class="visita" aria-label="Horarios y ubicación">
+      <div class="wrap visita-grid">
+        <div class="horarios" id="horarios">
+          <h2 class="h-section" data-reveal>Horarios</h2>
+          <p class="status status-big" data-status data-reveal aria-live="polite">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-text">Abrimos de miércoles a lunes.</span>
+          </p>
+          <table class="hours" data-reveal>
+            <caption class="sr-only">Horario de atención por día</caption>
+            <tbody>
+              <tr data-day="1"><th scope="row">Lunes</th><td>7:00 a. m. – 7:00 p. m.</td></tr>
+              <tr data-day="2"><th scope="row">Martes</th><td>Cerrado, estamos en la finca</td></tr>
+              <tr data-day="3"><th scope="row">Miércoles</th><td>7:00 a. m. – 7:00 p. m.</td></tr>
+              <tr data-day="4"><th scope="row">Jueves</th><td>7:00 a. m. – 7:00 p. m.</td></tr>
+              <tr data-day="5"><th scope="row">Viernes</th><td>7:00 a. m. – 7:00 p. m.</td></tr>
+              <tr data-day="6"><th scope="row">Sábado</th><td>7:00 a. m. – 9:00 p. m.</td></tr>
+              <tr data-day="0"><th scope="row">Domingo y festivos</th><td>8:00 a. m. – 6:00 p. m.</td></tr>
+            </tbody>
+          </table>
+          <p class="fine" data-reveal>Hora de Colombia. La cocina despacha hasta media hora antes del cierre.</p>
+        </div>
+
+        <div class="ubicacion" id="ubicacion">
+          <h2 class="h-section" data-reveal>Ubicación</h2>
+          <figure class="map" data-reveal>
+            <svg viewBox="0 0 640 520" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">Mapa del centro de Salento</title>
+              <desc id="map-desc">El café está en la Calle Real, dos cuadras al norte de la plaza de Bolívar, camino a las escaleras del mirador Alto de la Cruz.</desc>
+              <rect width="640" height="520" fill="#f1e3b5"/>
+              <g fill="#cbe4f2">
+                <rect x="0" y="0" width="150" height="110"/><rect x="172" y="0" width="122" height="110"/><rect x="334" y="0" width="122" height="110"/><rect x="478" y="0" width="162" height="110"/>
+                <rect x="0" y="132" width="150" height="100"/><rect x="172" y="132" width="122" height="100"/><rect x="334" y="132" width="122" height="100"/><rect x="478" y="132" width="162" height="100"/>
+                <rect x="0" y="254" width="150" height="100"/><rect x="172" y="254" width="122" height="100"/><rect x="334" y="254" width="122" height="100"/><rect x="478" y="254" width="162" height="100"/>
+                <rect x="0" y="376" width="150" height="144"/><rect x="172" y="376" width="122" height="144"/><rect x="478" y="376" width="162" height="144"/>
+              </g>
+              <rect x="334" y="376" width="122" height="144" fill="#ffc013"/>
+              <g font-family="Bricolage Grotesque, system-ui, sans-serif" fill="#0a0a0a">
+                <text x="314" y="300" font-size="22" font-weight="600" transform="rotate(-90 314 300)" text-anchor="middle" dominant-baseline="middle">Calle Real</text>
+                <text x="395" y="432" font-size="24" font-weight="600" text-anchor="middle">Plaza de</text>
+                <text x="395" y="462" font-size="24" font-weight="600" text-anchor="middle">Bolívar</text>
+                <text x="395" y="48" font-size="24" text-anchor="middle">Al mirador</text>
+                <text x="395" y="78" font-size="24" text-anchor="middle">Alto de la Cruz</text>
+                <text x="16" y="172" font-size="24" font-weight="600">El Portón</text>
+                <text x="16" y="202" font-size="24">Calle Real</text>
+                <text x="16" y="226" font-size="20">#6-14</text>
+              </g>
+              <path d="M268 210 v-26 a14 14 0 0 1 28 0 v26 z" fill="#b0298f"/>
+            </svg>
+          </figure>
+          <p class="address" data-reveal>
+            Calle Real #6-14, Salento, Quindío.<br>
+            Dos cuadras al norte de la plaza, del lado izquierdo subiendo al mirador.
+          </p>
+          <p class="map-links" data-reveal>
+            <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Real%2C+Salento%2C+Quind%C3%ADo%2C+Colombia" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            <a class="link" href="https://www.openstreetmap.org/search?query=Salento%2C%20Quind%C3%ADo" target="_blank" rel="noopener">Ver en OpenStreetMap</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact: a coupon-shaped form that writes the WhatsApp message -->
+    <section class="reservar" id="reservar" aria-labelledby="reservar-titulo">
+      <div class="wrap">
+        <form class="coupon" id="reserva" action="https://api.whatsapp.com/send" method="get" target="_blank" data-reveal>
+          <div class="coupon-left">
+            <h2 id="reservar-titulo" class="coupon-title">Aparta tu mesa</h2>
+            <p>
+              Tenemos doce sillas. Llena estos cuatro datos y se abrirá WhatsApp con el mensaje ya escrito;
+              solo tienes que enviarlo.
+            </p>
+          </div>
+          <div class="coupon-right">
+            <label class="sr-only" for="f-nombre">Tu nombre</label>
+            <input id="f-nombre" type="text" autocomplete="given-name" placeholder="Tu nombre" required>
+            <label class="sr-only" for="f-personas">Cuántas personas</label>
+            <select id="f-personas" required>
+              <option value="" disabled selected>Cuántas personas</option>
+              <option>1 persona</option><option>2 personas</option><option>3 personas</option>
+              <option>4 personas</option><option>5 personas</option><option>6 personas</option>
+            </select>
+            <label class="sr-only" for="f-dia">Qué día</label>
+            <input id="f-dia" type="date" required>
+            <label class="sr-only" for="f-hora">A qué hora</label>
+            <select id="f-hora" required>
+              <option value="" disabled selected>A qué hora</option>
+              <option>8:00 a. m.</option><option>9:00 a. m.</option><option>10:00 a. m.</option>
+              <option>11:00 a. m.</option><option>12:00 m.</option><option>2:00 p. m.</option>
+              <option>3:00 p. m.</option><option>4:00 p. m.</option><option>5:00 p. m.</option>
+              <option>6:00 p. m.</option>
+            </select>
+            <input type="hidden" name="text" id="f-text" value="Hola, Café El Portón. Quiero apartar una mesa.">
+            <p class="form-error" id="f-error" role="alert" hidden></p>
+            <button class="submit" type="submit">Escribir por WhatsApp</button>
+          </div>
+        </form>
+        <p class="reservar-alt" data-reveal>
+          ¿Solo una pregunta? <a class="link" href="https://wa.me/?text=Hola%2C%20Caf%C3%A9%20El%20Port%C3%B3n.%20Tengo%20una%20pregunta%3A%20" target="_blank" rel="noopener">Escríbenos sin reservar</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer: the name built from painted blocks, like the doors of Calle Real -->
+  <footer class="foot">
+    <div class="wrap">
+      <svg class="blocks" viewBox="0 0 1200 300" role="img" aria-label="El Portón">
+        <path d="M0 300 V163.5 a97.5 97.5 0 0 1 195.0 0 V300 Z" fill="#cbe4f2"/>
+        <text x="97.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">P</text>
+        <rect x="201" y="0.0" width="195.0" height="300.0" fill="#f1e3b5"/>
+        <text x="298.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">O</text>
+        <rect x="402" y="102.0" width="195.0" height="198.0" fill="#b0298f"/>
+        <text x="499.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">R</text>
+        <rect x="603" y="30.0" width="195.0" height="270.0" fill="#ffc013"/>
+        <text x="700.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">T</text>
+        <rect x="804" y="84.0" width="195.0" height="216.0" fill="#cbe4f2"/>
+        <text x="901.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">Ó</text>
+        <rect x="1005" y="48.0" width="195.0" height="252.0" fill="#f1e3b5"/>
+        <text x="1102.5" y="276.0" text-anchor="middle" font-size="176" font-weight="600" fill="#0a0a0a">N</text>
+      </svg>
+      <div class="foot-grid">
+        <ul class="foot-col">
+          <li><a href="#casa">La casa</a></li>
+          <li><a href="#salento">Salento</a></li>
+          <li><a href="#grano">Del árbol a la taza</a></li>
+        </ul>
+        <ul class="foot-col">
+          <li><a href="#cafe">Café</a></li>
+          <li><a href="#horno">Del horno</a></li>
+          <li><a href="#sin-cafe">Sin café</a></li>
+        </ul>
+        <ul class="foot-col">
+          <li><a href="#horarios">Horarios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#reservar">Reservar</a></li>
+        </ul>
+        <div class="foot-contact">
+          <p>Calle Real #6-14<br>Salento, Quindío, Colombia</p>
+          <p><a href="https://wa.me/?text=Hola%2C%20Caf%C3%A9%20El%20Port%C3%B3n." target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+        </div>
+      </div>
+
+      <div class="author" id="autor">
+        <p class="author-name">Diseño y desarrollo: Samuel Arias</p>
+        <p>
+          Café El Portón es un negocio ficticio, creado como pieza de portafolio. La dirección, la finca, los
+          precios y los horarios son inventados; las fotos muestran Salento y el café de la región, no un
+          local real.
+        </p>
+      </div>
+
+      <details class="credits">
+        <summary>Créditos de las fotografías</summary>
+        <ul>
+          <li>“Callerealsalento”, Sebasmrodriguez, <a href="https://commons.wikimedia.org/w/index.php?curid=18710794" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</li>
+          <li>“Carrera 6, Salento 01”, Bernard Gagnon, <a href="https://commons.wikimedia.org/wiki/File:Carrera_6,_Salento_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</li>
+          <li>“Calle 5, Salento 01”, Bernard Gagnon, <a href="https://commons.wikimedia.org/wiki/File:Calle_5,_Salento_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</li>
+          <li>“Jeep Willys – Salento (1)”, Remi Jouan, <a href="https://commons.wikimedia.org/w/index.php?curid=12760540" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</li>
+          <li>“Valle de Cocora, Colombia 03”, Bernard Gagnon, <a href="https://commons.wikimedia.org/w/index.php?curid=98914303" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</li>
+          <li>“Coffee cherries of varying ripeness, on a tree in Colombia”, Brian Smith / U.S. Fish and Wildlife Service, <a href="https://commons.wikimedia.org/wiki/File:Coffee_cherries_of_varying_ripeness,_on_a_tree_in_Colombia_(by_Brian_Smith).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, dominio público</li>
+          <li>“Coffea arabica, dried and parchment removed”, Forest and Kim Starr, <a href="https://commons.wikimedia.org/wiki/File:Starr-180616-4065-Coffea_arabica-homegrown_and_processed_dried_and_parchment_removed-Hawea_Pl_Olinda-Maui_(42761800604).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 3.0</li>
+          <li>Video “Kaffe – Ystad-2024”, Jonn Leffmann, <a href="https://commons.wikimedia.org/wiki/File:Kaffe_-_Ystad-2024.ogg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY 3.0</li>
+          <li>“Manual drip (pour-over) coffee”, Kim Sanso, <a href="https://commons.wikimedia.org/w/index.php?curid=70214599" target="_blank" rel="noopener">Wikimedia Commons</a>, CC0</li>
+          <li>“Espresso Coffee 01”, Jubair1985, <a href="https://commons.wikimedia.org/wiki/File:Espresso_Coffee_01.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC0</li>
+          <li>“Cappuccino and cookie”, TricksterWildcat, <a href="https://commons.wikimedia.org/wiki/File:Cappuccino_and_cookie.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</li>
+          <li>Cold brew con limón, Rita Robles Loaiza, <a href="https://wordpress.org/photos/photo/64169ecf35/" target="_blank" rel="noopener">WordPress Photo Directory</a>, CC0</li>
+          <li>“Pandeyuca, Pandebono y Almojábana. Colombia”, Hoako, <a href="https://commons.wikimedia.org/w/index.php?curid=47086973" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</li>
+          <li>“Arepa de Chócolo”, John Alexis Guerra Gómez, <a href="https://commons.wikimedia.org/w/index.php?curid=130437463" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 2.0</li>
+          <li>“Buñuelos Colombianos”, John Alexis Guerra Gómez, <a href="https://commons.wikimedia.org/w/index.php?curid=49450853" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 2.0</li>
+          <li>“Chocolate santafereño”, Marcelo Träsel, <a href="https://commons.wikimedia.org/w/index.php?curid=129862621" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 2.0</li>
+          <li>“Cup of aguapanela con limón”, Huhorihe2, <a href="https://commons.wikimedia.org/w/index.php?curid=167216508" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</li>
+        </ul>
+      </details>
+
+      <div class="foot-last">
+        <p>© 2026 Samuel Arias · Proyecto de portafolio</p>
+        <a class="button button-small" href="#inicio">Volver arriba</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
