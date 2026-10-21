@@ -555,8 +555,6 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
           <dt>Lun – Vie</dt><dd>08:00 – 18:30</dd>
           <dt>Sábado</dt><dd>08:00 – 14:00</dd>
           <dt>Domingo</dt><dd>Cerrado</dd>
-          <!-- TODO: número ficticio; reemplazar por uno propio antes de publicar -->
-          <dt>WhatsApp</dt><dd><a class="wa-link" href="https://wa.me/573105550142" target="_blank" rel="noopener">+57 310 555 0142</a></dd>
         </dl>
       </div>
 
@@ -569,7 +567,7 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
         <div class="field">
           <label for="phone">WhatsApp</label>
           <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="phone-hint phone-err">
-          <span class="hint" id="phone-hint">Celular de 10 dígitos, ej. 310 555 0142</span>
+          <span class="hint" id="phone-hint">Celular de 10 dígitos que empiece por 3</span>
           <span class="err-field" id="phone-err" hidden></span>
         </div>
         <div class="field">
@@ -591,7 +589,7 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
           <textarea id="notes" name="notes" maxlength="1000" placeholder="Ej. los cambios saltan en el piñón 15 y el freno trasero chilla."></textarea>
           <span class="hint" id="notes-status" role="status"></span>
         </div>
-        <noscript><p class="err">Este formulario necesita JavaScript. Escríbenos por WhatsApp al +57 310 555 0142.</p></noscript>
+        <noscript><p class="err">Este formulario necesita JavaScript para enviar la solicitud.</p></noscript>
         <p class="err" id="form-error" role="alert" hidden></p>
         <div class="form-foot">
           <span class="hint">Sin pago anticipado · Confirmamos en menos de 2 horas hábiles.</span>
@@ -609,7 +607,7 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
             <dt>WhatsApp</dt><dd data-slot="phone"></dd>
           </dl>
           <p class="stub-next"><strong>No tienes que hacer nada más.</strong> Te escribimos para confirmar el turno, y cotizamos antes de tocar cualquier pieza.</p>
-          <p class="hint">¿Prisa? <a class="link" data-slot="wa" href="https://wa.me/573105550142" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> · ¿Algo está mal? Corrígelo arriba y pulsa «Actualizar solicitud».</p>
+          <p class="hint">¿Algo está mal? Corrígelo arriba y pulsa «Actualizar solicitud».</p>
         </div>
       </form>
     </div>
@@ -710,7 +708,7 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
   const rules = {
     name: v => v.trim() ? "" : "Escribe tu nombre.",
     phone: v => !v.trim() ? "Escribe tu número de WhatsApp."
-      : phoneOk(v) ? "" : "Revisa el número: debe ser un celular de 10 dígitos, ej. 310 555 0142.",
+      : phoneOk(v) ? "" : "Revisa el número: debe ser un celular de 10 dígitos que empiece por 3.",
     date: v => !v ? "Elige una fecha de ingreso."
       : v < todayISO() ? "Elige una fecha desde hoy."
       : isSunday(v) ? "Los domingos cerramos. Elige un día de lunes a sábado." : "",
@@ -746,11 +744,6 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
     $("notes-status").textContent = `Elegimos Mantenimiento completo y agregamos tu relación ${$("chainring").value}/${$("sprocket").value} a las notas.`;
   });
 
-  document.querySelectorAll(".wa-link").forEach(a => a.addEventListener("click", () => {
-    const rel = ($("notes").value.match(/^Relación actual: .*$/m) || [""])[0];
-    const text = `Hola, quiero reservar ${$("service").value.toLowerCase()} en Taller Cadencia.${rel ? " " + rel : ""}`;
-    a.href = "https://wa.me/573105550142?text=" + encodeURIComponent(text);
-  }));
 
   const PRICES = { "Ajuste rápido": "$85.000", "Mantenimiento completo": "$240.000", "Bike fit": "$320.000" };
   const ORDER = 2612; // la siguiente a la orden de ejemplo N.º 2611
@@ -779,7 +772,6 @@ footer a { color: var(--ink); text-underline-offset: 3px; }
     slot("service").textContent = `${svc} · ${PRICES[svc]} COP`;
     slot("date").textContent = d;
     slot("phone").textContent = tel;
-    slot("wa").href = "https://wa.me/573105550142?text=" + encodeURIComponent(`Hola, soy ${name}. Quiero confirmar la solicitud N.º ${ORDER}: ${svc.toLowerCase()} el ${d}.`);
     ok.dataset.sent = "1";
     // ya hay solicitud: el botón principal pasa a ser una corrección, no un segundo envío
     $("submit-btn").textContent = "Actualizar solicitud";
