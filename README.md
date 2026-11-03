@@ -2,14 +2,17 @@
 
 Portafolio dedicado a mostrar páginas web desarrolladas por Samuel Arias, publicado con **GitHub Pages**. Cada proyecto es una landing de un negocio ficticio, escrita a mano con **HTML, CSS y JavaScript sin frameworks ni dependencias de build**.
 
-- Sitio en vivo: https://sagazarias.github.io/
+- Portada del portafolio: https://sagazarias.github.io/
+- Demo de Taller Cadencia: https://sagazarias.github.io/taller-cadencia/
 - Demo de Café El Portón: https://sagazarias.github.io/cafe-el-porton/
+
+La portada (`index.html`) presenta a Samuel Arias y enlaza todos los proyectos: los sitios de este repositorio y las aplicaciones (MiEspol, ESPOL Transport). Es una sola página con estilos embebidos, modo claro/oscuro según el sistema y diseño responsive.
 
 ## Proyectos incluidos
 
-### 1. Taller Cadencia (`/index.html`)
+### 1. Taller Cadencia (`/taller-cadencia/`)
 
-Landing de un taller de bicicletas de ruta y gravel en Chapinero, Bogotá. Se sirve en la raíz del sitio, en un solo archivo con el CSS y el JS embebidos.
+Landing de un taller de bicicletas de ruta y gravel en Chapinero, Bogotá. Vive en `taller-cadencia/index.html`, en un solo archivo con el CSS y el JS embebidos.
 
 | Característica | Implementación |
 |---|---|
@@ -55,7 +58,9 @@ python -m http.server 8000
 ## Estructura
 
 ```
-├── index.html              # Taller Cadencia (HTML + CSS + JS en un archivo)
+├── index.html              # Portada del portafolio
+├── taller-cadencia/
+│   └── index.html          # HTML + CSS + JS en un archivo
 └── cafe-el-porton/
     ├── index.html
     ├── styles.css
@@ -66,9 +71,9 @@ python -m http.server 8000
 ## Añadir un proyecto nuevo
 
 1. Crea una carpeta con nombre en *kebab-case*, por ejemplo `mi-proyecto/`, con su `index.html` y sus recursos dentro. Usa rutas relativas (`assets/...`) para que funcione bajo `https://sagazarias.github.io/mi-proyecto/`.
-2. Enlázalo desde un proyecto existente, como se hizo con Café El Portón en el pie de página de `index.html`:
+2. Añade una tarjeta `<article class="card">` en la sección "Sitios web" de la portada (`index.html`), con enlace a `mi-proyecto/`, y pon en el pie de página del proyecto un enlace de vuelta:
    ```html
-   <p>Otro proyecto del portafolio: <a href="mi-proyecto/">Mi proyecto</a></p>
+   <p><a href="../">Ver todo el portafolio</a></p>
    ```
 3. Haz commit y push a la rama publicada. GitHub Pages lo sirve en uno o dos minutos.
 4. Añade el proyecto a la sección "Proyectos incluidos" de este README.
