@@ -75,7 +75,6 @@ h2 { font: 500 .8125rem/1 var(--font-mono); color: var(--muted); letter-spacing:
 .actions { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-weight: 500; padding-top: .25rem; }
 .actions a { color: var(--accent); text-decoration: none; }
 .actions a:hover { text-decoration: underline; }
-.note { font: 400 .8125rem/1.4 var(--font-mono); color: var(--muted); }
 
 .stack { display: grid; gap: 1rem 2rem; grid-template-columns: 1fr; padding-bottom: 1rem; }
 @media (min-width: 40rem) { .stack { grid-template-columns: repeat(2, 1fr); } }
@@ -115,7 +114,7 @@ footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--lin
           <h3>ESPOL Transport</h3>
           <p>Sistema de carpooling para estudiantes. Pasajeros y conductores se registran, publican horarios y se emparejan por zonas. Gestiona reservas con cupos, tarifas, cancelaciones y calificaciones. Incluye una API REST y una app Android nativa.</p>
           <ul class="tags"><li>FastAPI</li><li>PostgreSQL</li><li>Alembic</li><li>JWT</li><li>Kotlin</li><li>Jetpack Compose</li></ul>
-          <p class="note">Repositorios privados: código disponible bajo solicitud.</p>
+          <div class="actions"><a href="https://github.com/SagazArias/espol-transport-api">Código API</a><a href="https://github.com/SagazArias/espol-transport-android">Código Android</a></div>
         </article>
       </div>
     </div>
