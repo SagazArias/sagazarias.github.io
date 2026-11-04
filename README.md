@@ -6,6 +6,12 @@ Portafolio dedicado a mostrar páginas web desarrolladas por Samuel Arias, publi
 - Demo de Taller Cadencia: https://sagazarias.github.io/taller-cadencia/
 - Demo de Café El Portón: https://sagazarias.github.io/cafe-el-porton/
 
+| Portada | Taller Cadencia | Café El Portón |
+|---|---|---|
+| [![Portada del portafolio](docs/capturas/portafolio.webp)](https://sagazarias.github.io/) | [![Taller Cadencia: calculadora de desarrollo con engranajes animados](docs/capturas/cadencia.webp)](https://sagazarias.github.io/taller-cadencia/) | [![Café El Portón: hero con foto de Salento](docs/capturas/porton.webp)](https://sagazarias.github.io/cafe-el-porton/) |
+
+<p align="center"><img src="docs/capturas/porton-movil.webp" alt="Café El Portón en un teléfono" width="260"></p>
+
 La portada (`index.html`) presenta a Samuel Arias y enlaza todos los proyectos: los sitios de este repositorio y las aplicaciones (MiEspol, ESPOL Transport). Es una sola página con estilos embebidos, modo claro/oscuro según el sistema y diseño responsive.
 
 ## Proyectos incluidos
